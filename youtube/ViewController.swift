@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Home"
+        collectionView?.backgroundColor = UIColor.white;
+    
     }
 
 }
