@@ -1,49 +1,12 @@
 //
-//  ViewController.swift
+//  VideoCell.swift
 //  youtube
 //
-//  Created by Nakib on 12/10/16.
+//  Created by Nakib on 12/11/16.
 //  Copyright © 2016 Nakib. All rights reserved.
 //
 
 import UIKit
-
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.title = "Home"
-        collectionView?.backgroundColor = UIColor.white;
-        
-        collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-    
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath )
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        // (frameWidth - paddingLeft - PaddingRight) * (9/16) + (PaddingTop + BottomContainer)
-        let height = (self.view.frame.size.width - 16 - 16 ) * (9 / 16) + (16 + 68)
-        return CGSize(width: self.view.frame.size.width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-}
-
 
 class VideoCell: UICollectionViewCell {
     override init(frame: CGRect) {
@@ -121,7 +84,7 @@ class VideoCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
         //right
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
-        //height    
+        //height
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
         
         
@@ -142,18 +105,3 @@ class VideoCell: UICollectionViewCell {
         fatalError("init code not implemented")
     }
 }
-
-extension UIView {
-    func addConstraintsWithVisualFormat(format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
-        
-        for(index, view) in views.enumerated() {
-            let key = "v\(index)"
-            viewsDictionary[key] = view
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}
-
