@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 230, green: 30, blue: 32)
         
+        //remove navbar hairline
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        
         application.statusBarStyle = .lightContent
         let statusBarBGView = UIView()
         statusBarBGView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31)

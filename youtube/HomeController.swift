@@ -25,7 +25,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = UIColor.white;
         
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+        
+        setupMenuBar()
+    }
     
+    let menuBar: MenuBar =  {
+        let mb = MenuBar()
+        mb.translatesAutoresizingMaskIntoConstraints = false
+        
+        return mb
+    }()
+    
+    private func setupMenuBar() {
+        view.addSubview(menuBar)
+        
+        view.addConstraintsWithVisualFormat(format: "H:|[v0]|", views: menuBar)
+        view.addConstraintsWithVisualFormat(format: "V:|[v0(50)]|", views: menuBar)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
