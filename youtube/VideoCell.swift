@@ -8,12 +8,25 @@
 
 import UIKit
 
-class VideoCell: UICollectionViewCell {
+
+class BaseCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupView()
     }
+    
+    func setupView()  {
+       // override this method
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init code not implemented")
+    }
+}
+
+
+class VideoCell: UICollectionViewCell {
     
     let seperatorView: UIView = {
         let view = UIView()
@@ -101,7 +114,4 @@ class VideoCell: UICollectionViewCell {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init code not implemented")
-    }
 }
