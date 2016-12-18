@@ -13,9 +13,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isTranslucent = false
-        //navigationItem.title = "Home"
-        
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-32, height: view.frame.size.height))
         titleLabel.text = "Home"
         titleLabel.textColor = UIColor.white
@@ -29,8 +26,29 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
+        setupNavBar()
         setupMenuBar()
     }
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        let searchIcon = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
+        let searchButton = UIBarButtonItem(image: searchIcon, style: .plain, target: self, action: #selector(handleSearch))
+        
+        let menuIcon = UIImage(named: "nav_more_icon")?.withRenderingMode(.alwaysOriginal)
+        let menuButton = UIBarButtonItem(image: menuIcon, style: .plain, target: self, action: #selector(handleMenu))
+        
+        navigationItem.rightBarButtonItems = [menuButton, searchButton]
+    }
+    
+    func handleSearch() {
+        
+    }
+    
+    func handleMenu() {
+        
+    }
+    
     
     let menuBar: MenuBar =  {
         let mb = MenuBar()
