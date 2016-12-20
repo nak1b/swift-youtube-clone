@@ -30,7 +30,35 @@ class VideoCell: BaseCell {
     var video: Video? {
         didSet {
             titleLabel.text = video?.title
-            thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+            
+            if let thumb = video?.thumbnailImageName {
+                thumbnailImageView.image = UIImage(named: thumb)
+            }
+            
+            if let profileImage = video?.channel?.profileImage {
+                userProfileImageView.image = UIImage(named: profileImage)
+            }
+            
+            if let channelName = video?.channel?.name, let numOfViews = video?.numberOfViews {
+                let numFormatter = NumberFormatter()
+                numFormatter.numberStyle = .decimal
+                
+                let subText = "\(channelName) • \(numFormatter.string(from: numOfViews)!) • 2 years ago"
+                subtitleTextView.text = subText
+            }
+            
+            //measure title text
+            if let title = video?.title {
+                let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
+                let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+                let estimatedRect = NSString(string: title).boundingRect(with: size, options: options, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 14)], context: nil)
+                
+                if(estimatedRect.size.height > 20) {
+                    titleHeightConstraint?.constant = 44
+                } else {
+                    titleHeightConstraint?.constant = 20
+                }
+            }
         }
     }
     
@@ -55,6 +83,7 @@ class VideoCell: BaseCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Eminem - Not Afraid"
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -80,6 +109,8 @@ class VideoCell: BaseCell {
     }()
     
     
+    var titleHeightConstraint:NSLayoutConstraint?
+    
     override func setupView()  {
         super.setupView()
         
@@ -93,7 +124,7 @@ class VideoCell: BaseCell {
         addConstraintsWithVisualFormat(format: "H:|-16-[v0(44)]", views: userProfileImageView, titleLabel)
         
         //vertical constraints
-        addConstraintsWithVisualFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", views: thumbnailImageView, userProfileImageView, seperatorView)
+        addConstraintsWithVisualFormat(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", views: thumbnailImageView, userProfileImageView, seperatorView)
         
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: seperatorView)
         
@@ -105,8 +136,10 @@ class VideoCell: BaseCell {
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
         //right
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
+        
         //height
-        addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
+        titleHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20)
+        addConstraint(titleHeightConstraint!)
         
         
         //SubtitleTextview Constraints

@@ -9,15 +9,22 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
     var videos:[Video] = {
+        var eminemChannel = Channel()
+        eminemChannel.name = "Eminem Vevo"
+        eminemChannel.profileImage = "profile-image"
+        
         var mockingBird = Video()
-        mockingBird.title = "Eminem - Mockingbird";
-        mockingBird.thumbnailImageName = "eminem-mockingbird";
+        mockingBird.title = "Eminem - Mockingbird Random title exapnafer text"
+        mockingBird.thumbnailImageName = "eminem-mockingbird"
+        mockingBird.numberOfViews = 31763871263
+        mockingBird.channel = eminemChannel
         
         var notAftraid = Video()
-        notAftraid.title = "Eminem - Not Afraid";
-        notAftraid.thumbnailImageName = "eminem-album-image";
+        notAftraid.title = "Eminem - Not Afraid"
+        notAftraid.thumbnailImageName = "eminem-album-image"
+        notAftraid.numberOfViews = 123129289
+        notAftraid.channel = eminemChannel
         
         return [mockingBird, notAftraid]
     }()
@@ -90,7 +97,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         // (frameWidth - paddingLeft - PaddingRight) * (9/16) + (PaddingTop + BottomContainer)
-        let height = (self.view.frame.size.width - 16 - 16 ) * (9 / 16) + (16 + 68)
+        let height = (self.view.frame.size.width - 16 - 16 ) * (9 / 16) + (16 + 88)
         return CGSize(width: self.view.frame.size.width, height: height)
     }
     
