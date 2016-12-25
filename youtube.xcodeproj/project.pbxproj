@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3101D5181E0F6C9C006CCA77 /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3101D5171E0F6C9B006CCA77 /* SettingsMenu.swift */; };
 		318D63DC1DFE64F400D41EC7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318D63DB1DFE64F400D41EC7 /* Extensions.swift */; };
 		318D63DF1DFE657000D41EC7 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318D63DE1DFE657000D41EC7 /* VideoCell.swift */; };
 		31CB6C921E0285E80024A3E2 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB6C911E0285E80024A3E2 /* MenuBar.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3101D5171E0F6C9B006CCA77 /* SettingsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		318D63DB1DFE64F400D41EC7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		318D63DE1DFE657000D41EC7 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		31CB6C911E0285E80024A3E2 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				31D0627E1DFCD20E00516B46 /* HomeController.swift */,
+				3101D5171E0F6C9B006CCA77 /* SettingsMenu.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31D0627F1DFCD20E00516B46 /* HomeController.swift in Sources */,
+				3101D5181E0F6C9C006CCA77 /* SettingsMenu.swift in Sources */,
 				31E7DF501E0664BC00F07A3C /* Video.swift in Sources */,
 				318D63DF1DFE657000D41EC7 /* VideoCell.swift in Sources */,
 				318D63DC1DFE64F400D41EC7 /* Extensions.swift in Sources */,

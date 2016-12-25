@@ -88,10 +88,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
-    func handleMenu() {
-        
-    }
+    let settingsMenu = SettingsMenu()
     
+    func handleMenu() {
+        settingsMenu.openMenu()
+    }
     
     let menuBar: MenuBar =  {
         let mb = MenuBar()
