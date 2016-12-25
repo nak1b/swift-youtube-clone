@@ -31,13 +31,9 @@ class VideoCell: BaseCell {
         didSet {
             titleLabel.text = video?.title
             
-            if let thumb = video?.thumbnailImageName {
-                thumbnailImageView.image = UIImage(named: thumb)
-            }
+            setupThumbnailImage()
+            setupProfileImage()
             
-            if let profileImage = video?.channel?.profileImage {
-                userProfileImageView.image = UIImage(named: profileImage)
-            }
             
             if let channelName = video?.channel?.name, let numOfViews = video?.numberOfViews {
                 let numFormatter = NumberFormatter()
@@ -59,6 +55,18 @@ class VideoCell: BaseCell {
                     titleHeightConstraint?.constant = 20
                 }
             }
+        }
+    }
+    
+    func setupProfileImage() {
+        if let profileImageURL = video?.channel?.profileImage {
+            userProfileImageView.loadImageFromUrlString(urlString: profileImageURL)
+        }
+    }
+    
+    func setupThumbnailImage() {
+        if let thumbURL = video?.thumbnailImageName {
+            thumbnailImageView.loadImageFromUrlString(urlString: thumbURL)
         }
     }
     
