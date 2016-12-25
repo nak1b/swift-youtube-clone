@@ -8,12 +8,43 @@
 
 import UIKit
 
-class SettingsMenu: NSObject {
+
+class Setting: NSObject {
+    let name:String
+    let iconName:String
+    
+    init(name:String, iconName:String) {
+        self.name = name
+        self.iconName = iconName
+    }
+}
+
+
+class SettingsMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    let cellId = "cellId"
+    let cellHeight:CGFloat = 50
+    let blackBG = UIView()
+    
+    let settings:[Setting] = {
+        return [
+            Setting(name: "Settings", iconName: "settings"),
+            Setting(name: "Terms & privacy policy", iconName: "privacy"),
+            Setting(name: "Send Feedback", iconName: "feedback"),
+            Setting(name: "Help", iconName: "help"),
+            Setting(name: "Switch account", iconName: "switch_account"),
+            Setting(name: "Cancel", iconName: "cancel")
+        ]
+    }()
+    
     override init() {
         super.init()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(SettingsCell.self, forCellWithReuseIdentifier: cellId)
     }
-    
-    let blackBG = UIView()
     
     let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,7 +66,7 @@ class SettingsMenu: NSObject {
             window.addSubview(blackBG)
             window.addSubview(collectionView)
             
-            let height:CGFloat = 200
+            let height:CGFloat = CGFloat(settings.count) * cellHeight
             let yPos = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
 
@@ -57,5 +88,25 @@ class SettingsMenu: NSObject {
             }
 
         })
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return settings.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SettingsCell
+        cell.setting = settings[indexPath.item]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
