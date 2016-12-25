@@ -28,8 +28,18 @@ extension UIView {
     }
 }
 
+let imageCache = NSCache<NSString, UIImage>()
+
 extension UIImageView {
     func loadImageFromUrlString(urlString: String) {
+        
+        self.image = nil
+        
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
+            self.image = cachedImage
+            return
+        }
+        
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -39,7 +49,10 @@ extension UIImageView {
             }
             
             DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
+                
+                let imageToCache = UIImage(data: data!)
+                imageCache.setObject(imageToCache!, forKey: urlString as NSString)
+                self.image = imageToCache
             }
             
             
