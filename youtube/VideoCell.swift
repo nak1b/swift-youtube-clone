@@ -77,8 +77,8 @@ class VideoCell: BaseCell {
         return view
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "profile-image")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -107,8 +107,8 @@ class VideoCell: BaseCell {
         return textView
     }()
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "eminem-album-image")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
