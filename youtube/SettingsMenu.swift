@@ -25,6 +25,7 @@ class SettingsMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     let cellId = "cellId"
     let cellHeight:CGFloat = 50
     let blackBG = UIView()
+    var homeController: HomeController?
     
     let settings:[Setting] = {
         return [
@@ -79,15 +80,21 @@ class SettingsMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
-    func dismissMenu() {
-        UIView.animate(withDuration: 0.5, animations: {
+    func dismissMenu(setting: Setting) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackBG.alpha = 0
             
             if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
+            
+        }) { (completed: Bool) in
+            
+            if setting.name != "Cancel" && setting.name != "" {
+                self.homeController?.showSettingsController(setting: setting)
+            }
+        }
 
-        })
     }
     
     
@@ -108,5 +115,10 @@ class SettingsMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = self.settings[indexPath.item]
+        dismissMenu(setting: setting)
     }
 }
