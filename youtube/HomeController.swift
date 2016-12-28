@@ -10,6 +10,7 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    let navTitles = ["Home", "Trending", "Subscriptions", "Account"]
     let cellId = "cellId"
     
     override func viewDidLoad() {
@@ -59,6 +60,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func scrollToMenuAtIndex(index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition(), animated: true)
+        setTitleForIndex(index: index)
+    }
+    
+    private func setTitleForIndex(index: Int) {
+        if let titleLabel = navigationItem.titleView as? UILabel {
+            titleLabel.text = "  \(navTitles[index])"
+        }
     }
     
     lazy var settingsMenu: SettingsMenu = {
@@ -127,11 +135,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         menuBar.barLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
     }
     
+    
+    
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let index = targetContentOffset.pointee.x / view.frame.size.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition())
+        
+        setTitleForIndex(index: Int(index))
     }
 
 }
