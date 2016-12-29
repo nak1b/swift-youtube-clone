@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3101D5181E0F6C9C006CCA77 /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3101D5171E0F6C9B006CCA77 /* SettingsMenu.swift */; };
 		3101D51A1E0F7A0A006CCA77 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3101D5191E0F7A0A006CCA77 /* SettingsCell.swift */; };
+		31532FDF1E149DBB00AAE1CA /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31532FDE1E149DBB00AAE1CA /* TrendingCell.swift */; };
+		31532FE11E149DD500AAE1CA /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31532FE01E149DD500AAE1CA /* SubscriptionCell.swift */; };
 		318D63DC1DFE64F400D41EC7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318D63DB1DFE64F400D41EC7 /* Extensions.swift */; };
 		318D63DF1DFE657000D41EC7 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318D63DE1DFE657000D41EC7 /* VideoCell.swift */; };
 		31CB6C921E0285E80024A3E2 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB6C911E0285E80024A3E2 /* MenuBar.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		3101D5171E0F6C9B006CCA77 /* SettingsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		3101D5191E0F7A0A006CCA77 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		31532FDE1E149DBB00AAE1CA /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		31532FE01E149DD500AAE1CA /* SubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		318D63DB1DFE64F400D41EC7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		318D63DE1DFE657000D41EC7 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		31CB6C911E0285E80024A3E2 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				31CB6C911E0285E80024A3E2 /* MenuBar.swift */,
 				3101D5191E0F7A0A006CCA77 /* SettingsCell.swift */,
 				31F23F541E139F2F00B1D1A5 /* FeedCell.swift */,
+				31532FDE1E149DBB00AAE1CA /* TrendingCell.swift */,
+				31532FE01E149DD500AAE1CA /* SubscriptionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -160,6 +166,7 @@
 				TargetAttributes = {
 					31D062781DFCD20E00516B46 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 86W2WCFB7B;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -202,6 +209,7 @@
 			files = (
 				31D0627F1DFCD20E00516B46 /* HomeController.swift in Sources */,
 				31F23F551E139F2F00B1D1A5 /* FeedCell.swift in Sources */,
+				31532FDF1E149DBB00AAE1CA /* TrendingCell.swift in Sources */,
 				3101D5181E0F6C9C006CCA77 /* SettingsMenu.swift in Sources */,
 				31E7DF501E0664BC00F07A3C /* Video.swift in Sources */,
 				318D63DF1DFE657000D41EC7 /* VideoCell.swift in Sources */,
@@ -209,6 +217,7 @@
 				31F23F531E1340C600B1D1A5 /* ApiService.swift in Sources */,
 				31D0627D1DFCD20E00516B46 /* AppDelegate.swift in Sources */,
 				3101D51A1E0F7A0A006CCA77 /* SettingsCell.swift in Sources */,
+				31532FE11E149DD500AAE1CA /* SubscriptionCell.swift in Sources */,
 				31CB6C921E0285E80024A3E2 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +341,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 86W2WCFB7B;
 				INFOPLIST_FILE = youtube/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nakibmomin.youtube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,7 +355,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 86W2WCFB7B;
 				INFOPLIST_FILE = youtube/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nakibmomin.youtube;
 				PRODUCT_NAME = "$(TARGET_NAME)";

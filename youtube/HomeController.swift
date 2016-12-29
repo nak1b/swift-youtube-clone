@@ -12,6 +12,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let navTitles = ["Home", "Trending", "Subscriptions", "Account"]
     let cellId = "cellId"
+    let subscriptionCellId = "subscriptionCellId"
+    let trendingCellId = "trendingCellId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.isPagingEnabled = true
         collectionView?.backgroundColor = UIColor.white;
         
+        //register cells
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
@@ -120,7 +125,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        
+        var identifier = cellId
+        
+        if indexPath.item == 1 {
+            identifier = trendingCellId
+        } else if indexPath.item == 2 {
+            identifier = subscriptionCellId
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
         return cell
     }
