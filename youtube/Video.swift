@@ -8,7 +8,27 @@
 
 import UIKit
 
-class Video: NSObject {
+class SafeJSON: NSObject {
+    
+    // Preventing crash when new key:value property is introduced
+    // on the server side
+    override func setValue(_ value: Any?, forKey key: String) {
+        let upperCaseFirstLetter = String(key.characters.first!).uppercased()
+        let range = NSMakeRange(0, 1)
+        let selectorStr = NSString(string: key).replacingCharacters(in: range, with: upperCaseFirstLetter)
+        
+        let selector = NSSelectorFromString("set\(selectorStr):")
+        let response = self.responds(to: selector)
+        
+        if !response {
+            return
+        }
+        
+        super.setValue(value, forKey: key)
+    }
+}
+
+class Video: SafeJSON {
     var thumbnail_image_name: String?
     var title: String?
     var number_of_views: NSNumber? = 0.0
@@ -33,7 +53,7 @@ class Video: NSObject {
 }
 
 
-class Channel: NSObject {
+class Channel: SafeJSON {
     var name: String?
     var profile_image_name: String?
 }
